@@ -40,7 +40,8 @@
 }
 
 #topTvAnime,
-#upcomingSeries {
+#upcomingSeries,
+#topMagazines {
   overflow-x: scroll;
 }
 
@@ -53,10 +54,6 @@
     height: 250px;
     object-fit: cover;
   }
-
-.mostWatchCard{
-    height: 370px;
-}
 
 #randomCharacter span.name {
     background-color: #ee626b;

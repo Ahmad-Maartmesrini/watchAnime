@@ -37,6 +37,10 @@ async function getAnnimes(query) {
       singleAnime.addEventListener("mouseout", function () {
         displayImage.style.display = "none";
       });
+
+      singleAnime.addEventListener("click", function () {
+        displayImage.style.display = "none";
+      });
     });
   }
 }
@@ -46,7 +50,6 @@ const topTvAnime = document.querySelector("#topTvAnime");
 async function getTopAnime() {
   const res = await fetch(`${api_url}/top/anime`);
   const topAnimes = await res.json();
-  console.log(topAnimes.data);
   topAnimes.data.map((topAnime) => {
     topTvAnime.innerHTML += `
     <div class="col-lg-3 col-md-6">
@@ -97,6 +100,7 @@ async function getUpcomingSeries() {
 
 getUpcomingSeries();
 
+// random Character pictuer
 const randomCharacter = document.querySelector("#randomCharacter");
 async function getRandomCharacter() {
   const res = await fetch(`${api_url}/random/characters`);
@@ -109,3 +113,26 @@ async function getRandomCharacter() {
 }
 
 getRandomCharacter();
+
+const topMagazines = document.querySelector("#topMagazines");
+async function getCategories() {
+  const res = await fetch(`${api_url}/watch/promos`);
+  const mags = await res.json();
+  console.log(mags);
+  mags.data.map((item) => {
+    topMagazines.innerHTML += `
+  <div class="col-lg-2 col-md-6 col-sm-6">
+    <div class="item">
+        <h4>${item.entry.title.substring(0, 15)}</h4>
+        <div class="thumb">
+          <a href="${item.trailer.url}"
+            ><img src="${item.entry.images.webp.image_url}"
+          /></a>
+        </div>
+    </div>
+  </div> 
+      `;
+  });
+}
+
+getCategories();
